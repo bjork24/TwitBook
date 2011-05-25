@@ -19,7 +19,7 @@
     	$.ajax({
 				url: json_url,
 				dataType: 'jsonp',
-				success: function(data) { eval($count.text(props[type]['return']);); }
+				success: function(data) { eval("$count.text(props[type]['return'])"); }
 				});
     	}
   };
