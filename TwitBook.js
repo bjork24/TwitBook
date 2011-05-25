@@ -1,25 +1,25 @@
 (function($){
   $.fn.TwitBook = function() {
+    var props = new Array();
+    props['facebook']['json_url'] = 'http://graph.facebook.com/?ids=';
+    props['facebook']['return'] = 'data[url].shares';
+    props['twitter']['json_url'] = 'http://api.tweetmeme.com/url_info.jsonc?url=';
+    props['twitter']['return'] = 'data["story"].url_count';
+    props['delicious']['json_url'] = 'http://feeds.delicious.com/v2/json/urlinfo/data?url=';
+    props['delicious']['return'] = 'data[0].total_posts';
     this.each(function(){
     	var url = $(this).attr('data-tb-url');
+    	var type = $(this).attr('data-tb-type');
     	var $count = $(this).find('.tb-count');
-    	if($(this).hasClass('tb-facebook')) { grabJSONP('fb',url,$count); }
-    	else if($(this).hasClass('tb-twitter')) { grabJSONP('tw',url,$count); }
-    	else if($(this).hasClass('tb-delicious')) { grabJSONP('dl',url,$count); }
+    	grabJSONP(type,url,$count,props);
     	});
-    function grabJSONP(type,url,$count)
+    function grabJSONP(type,url,$count,props)
     	{
-    	if 			(type=='fb') { json_url = 'http://graph.facebook.com/?ids='+url; }
-    	else if	(type=='tw') { json_url = 'http://api.tweetmeme.com/url_info.jsonc?url='+url; }
-    	else if	(type=='dl') { json_url = 'http://feeds.delicious.com/v2/json/urlinfo/data?url='+url; }
+    	json_url = props[type]['json_url']+url;
     	$.ajax({
 				url: json_url,
 				dataType: 'jsonp',
-				success: function(data) {
-					if 			(type=='fb') { $count.text(data[url].shares); }
-					else if	(type=='tw') { $count.text(data['story'].url_count); }
-					else if	(type=='dl') { $count.text(data[0].total_posts); }
-					}
+				success: function(data) { eval($count.text(props[type]['return']);); }
 				});
     	}
   };
