@@ -8,16 +8,11 @@
     	var url = $(this).attr('data-tb-url');
     	var type = $(this).attr('data-tb-type');
     	var $count = $(this).find('.tb-count');
-    	grabJSONP(type,url,$count,props);
-    	});
-    function grabJSONP(type,url,$count,props)
-    	{
-    	json_url = props[type][0]+url;
     	$.ajax({
-				url: json_url,
+				url: props[type][0]+url,
 				dataType: 'jsonp',
 				success: function(data) { $count.text(eval(props[type][1])); }
 				});
-    	}
+    	});
   };
 })( jQuery );
