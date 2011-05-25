@@ -1,12 +1,9 @@
 (function($){
   $.fn.TwitBook = function() {
     var props = new Array();
-    props['facebook']['json_url'] = 'http://graph.facebook.com/?ids=';
-    props['facebook']['return'] = 'data[url].shares';
-    props['twitter']['json_url'] = 'http://api.tweetmeme.com/url_info.jsonc?url=';
-    props['twitter']['return'] = 'data["story"].url_count';
-    props['delicious']['json_url'] = 'http://feeds.delicious.com/v2/json/urlinfo/data?url=';
-    props['delicious']['return'] = 'data[0].total_posts';
+    props['facebook'] = new Array('http://graph.facebook.com/?ids=','data[url].shares');
+    props['twitter'] = new Array('http://api.tweetmeme.com/url_info.jsonc?url=','data["story"].url_count');
+    props['delicious'] = new Array('http://feeds.delicious.com/v2/json/urlinfo/data?url=','data[0].total_posts');
     this.each(function(){
     	var url = $(this).attr('data-tb-url');
     	var type = $(this).attr('data-tb-type');
@@ -15,11 +12,11 @@
     	});
     function grabJSONP(type,url,$count,props)
     	{
-    	json_url = props[type]['json_url']+url;
+    	json_url = props[type][0]+url;
     	$.ajax({
 				url: json_url,
 				dataType: 'jsonp',
-				success: function(data) { eval("$count.text(props[type]['return'])"); }
+				success: function(data) { $count.text(eval(props[type][1])); }
 				});
     	}
   };
