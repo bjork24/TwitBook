@@ -8,7 +8,7 @@ Author: [Dan Chilton](http://www.danchilton.com)
 Description
 -----------
 
-A jQuery plugin that allows you to insert Facebook likes, tweets, and Delicious bookmark counts anywhere within your markup.
+A jQuery plugin that allows you to insert Facebook likes, tweets, and Delicious bookmark counts anywhere within your markup. All in 77 glorious bytes!
 
 Usage
 -----
