@@ -9,10 +9,10 @@
     	var type = $(this).attr('data-tb-type');
     	var $count = $(this).find('.tb-count');
     	$.ajax({
-				url: props[type][0]+url,
-				dataType: 'jsonp',
-				success: function(data) { $count.text(eval(props[type][1])); }
-				});
+    		url: props[type][0]+url,
+    		dataType: 'jsonp',
+    		success: function(data) { $count.text(eval(props[type][1])); }
+    		});
     	});
   };
 })( jQuery );
