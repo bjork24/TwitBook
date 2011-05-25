@@ -5,6 +5,8 @@
     	var $count = $(this).find('.tb-count');
     	if($(this).hasClass('tb-facebook')) { grabJSONP('fb',url,$count); }
     	else if($(this).hasClass('tb-twitter')) { grabJSONP('tw',url,$count); }
+    	else if($(this).hasClass('tb-delicious')) { grabJSONP('dl',url,$count); }
+    	else if($(this).hasClass('tb-digg')) { grabJSONP('dg',url,$count); }
     	});
     function grabJSONP(type,url,$count)
     	{

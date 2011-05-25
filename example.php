@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="TwitBook.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-  	$('.tb-facebook, .tb-twitter').TwitBook();
+  	$('.tb-facebook, .tb-twitter, .tb-delicious, .tb-digg').TwitBook();
   });
   </script>
 </head>
